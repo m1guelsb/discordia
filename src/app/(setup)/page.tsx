@@ -1,3 +1,5 @@
+import Image from 'next/image'
+import { InitialModal } from '@/components/modals/initial-modal'
 import { Button } from '@/components/ui/button'
 import { db } from '@/lib/db'
 import { initialProfile } from '@/lib/initial-profile'
@@ -21,8 +23,14 @@ export default async function SetupPage() {
   }
 
   return (
-    <div>
-      <Button>Create a server</Button>
-    </div>
+    <>
+      <div className="h-full flex flex-col items-center justify-center gap-6">
+        <Image src={'/logo.svg'} alt="discordia logo" width={64} height={64} />
+        <h1> Welcome to Discordia</h1>
+        <InitialModal>
+          <Button>Create a server</Button>
+        </InitialModal>
+      </div>
+    </>
   )
 }
