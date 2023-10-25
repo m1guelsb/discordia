@@ -1,5 +1,4 @@
 import { ThemeProvider } from '@/components/providers'
-import { cn } from '@/lib/utils'
 import '@/styles/globals.css'
 import { ClerkProvider } from '@clerk/nextjs'
 import type { Metadata } from 'next'
