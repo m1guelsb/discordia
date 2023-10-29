@@ -4,7 +4,7 @@ import * as z from 'zod'
 import { ReactNode } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-
+import axios from 'axios'
 import {
   Dialog,
   DialogContent,
@@ -24,6 +24,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { FileUpload } from '@/components/ui/file-upload'
+import { useRouter } from 'next/navigation'
 
 const createServerSchema = z.object({
   name: z.string().min(1, {
@@ -37,6 +38,7 @@ interface InitialModalProps {
   children: ReactNode
 }
 export const InitialModal = ({ children }: InitialModalProps) => {
+  const router = useRouter()
   const form = useForm({
     resolver: zodResolver(createServerSchema),
     defaultValues: {
@@ -48,7 +50,14 @@ export const InitialModal = ({ children }: InitialModalProps) => {
   const isLoading = form.formState.isSubmitting
 
   const onSubmit = async (data: z.infer<typeof createServerSchema>) => {
-    console.log(data)
+    try {
+      await axios.post('/api/servers', data)
+      form.reset()
+      router.refresh()
+      window.location.reload()
+    } catch (err) {
+      console.log('error :>> ', err)
+    }
   }
 
   return (
