@@ -23,7 +23,7 @@ export const FileUpload = ({ endpoint, onChange, value }: FileUploadProps) => {
     <UploadButton
       appearance={{
         button:
-          'ut-ready:bg-green-300 ut-uploading:cursor-not-allowed rounded-r-none bg-secondary hover:bg-secondary/90 after:bg-orange-500',
+          'ut-ready:bg-green-300 text-foreground ut-uploading:cursor-not-allowed bg-secondary hover:bg-secondary/90 after:bg-orange-500',
         container: 'h-20 flex flex-col',
         allowedContent: 'text-slate-700',
       }}

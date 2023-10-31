@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { Separator } from '@/components/ui/separator'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { NavigationItem } from '@/components/layout/navigation-item'
+import { UserButton } from '@clerk/nextjs'
 
 export const NavigationSidebar = async () => {
   const profile = await currentProfile()
@@ -30,15 +31,26 @@ export const NavigationSidebar = async () => {
       </button>
 
       <NavigationAction />
-      <Separator className="w-12" />
+      <Separator className="w-11" />
 
       <ScrollArea className="flex-1 w-full">
-        {servers.map(({ imageUrl, id, name }) => (
-          <NavigationItem key={id} id={id} imageUrl={imageUrl} name={name} />
-        ))}
+        <div className="w-full flex flex-col gap-4">
+          {servers.map(({ imageUrl, id, name }) => (
+            <NavigationItem key={id} id={id} imageUrl={imageUrl} name={name} />
+          ))}
+        </div>
       </ScrollArea>
 
-      <Separator className="w-12" />
+      <Separator className="w-11" />
+
+      <UserButton
+        afterSignOutUrl="/"
+        appearance={{
+          elements: {
+            avatarBox: 'h-10 w-10',
+          },
+        }}
+      />
       <ThemeToggle />
     </div>
   )
