@@ -24,9 +24,10 @@ import { Button } from '@/components/ui/button'
 import { FileUpload } from '@/components/ui/file-upload'
 import { useRouter } from 'next/navigation'
 import { useModal } from '@/hooks/use-modal-store'
+import { useEffect } from 'react'
 import { X } from 'lucide-react'
 
-const createServerSchema = z.object({
+const editServerSchema = z.object({
   name: z.string().min(1, {
     message: 'Name is required',
   }),
@@ -35,25 +36,33 @@ const createServerSchema = z.object({
   }),
 })
 
-export const CreateServerModal = () => {
-  const { isOpen, onClose, type } = useModal()
+export const EditServerModal = () => {
+  const { isOpen, onClose, type, data } = useModal()
 
-  const isModalOpen = isOpen && type === 'createServer'
+  const isModalOpen = isOpen && type === 'editServer'
+  const { server } = data
 
   const router = useRouter()
   const form = useForm({
-    resolver: zodResolver(createServerSchema),
+    resolver: zodResolver(editServerSchema),
     defaultValues: {
       name: '',
       imageUrl: '',
     },
   })
 
+  useEffect(() => {
+    if (server) {
+      form.setValue('name', server.name)
+      form.setValue('imageUrl', server.imageUrl)
+    }
+  }, [form, server])
+
   const isLoading = form.formState.isSubmitting
 
-  const onSubmit = async (data: z.infer<typeof createServerSchema>) => {
+  const onSubmit = async (data: z.infer<typeof editServerSchema>) => {
     try {
-      await axios.post('/api/servers', data)
+      await axios.patch(`/api/servers/${server?.id}`, data)
       form.reset()
       router.refresh()
       onClose()
@@ -71,7 +80,7 @@ export const CreateServerModal = () => {
     <Dialog open={isModalOpen} onOpenChange={handleClose}>
       <DialogContent className="overflow-hidden">
         <DialogHeader className="mb-4">
-          <DialogTitle className="text-2xl">Create your server</DialogTitle>
+          <DialogTitle className="text-2xl">Edit server</DialogTitle>
         </DialogHeader>
 
         <Form {...form}>
@@ -101,7 +110,6 @@ export const CreateServerModal = () => {
                           )}
                         </>
                       </FormControl>
-
                       <FormMessage />
                     </FormItem>
                   )}
@@ -127,7 +135,7 @@ export const CreateServerModal = () => {
             </div>
 
             <DialogFooter>
-              <Button disabled={isLoading}>Create server</Button>
+              <Button disabled={isLoading}>Save</Button>
             </DialogFooter>
           </form>
         </Form>
