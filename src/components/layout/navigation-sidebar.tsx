@@ -25,7 +25,7 @@ export const NavigationSidebar = async () => {
   })
 
   return (
-    <div className="space-y-4 flex flex-col items-center h-full w-full bg-background2 py-3">
+    <div className="space-y-4 flex flex-col items-center h-full w-full bg-background3 py-3">
       <button className="h-12 w-12 flex items-center justify-center rounded-2xl bg-primary">
         <Image src={'/icon.svg'} alt="Discordia" height={32} width={32} />
       </button>
