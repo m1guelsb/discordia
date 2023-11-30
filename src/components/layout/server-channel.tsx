@@ -53,14 +53,17 @@ export const ServerChannel = ({
           <span className="flex">
             <ActionTooltip label="Edit">
               <button className="p-1">
-                <Edit className="text-muted-foreground hidden w-4 h-4 group-hover:block group-focus-within:block" />
+                <Edit
+                  onClick={() => onOpen('editChannel', { server, channel })}
+                  className="text-muted-foreground hidden w-4 h-4 group-hover:block group-focus-within:block"
+                />
               </button>
             </ActionTooltip>
 
             <ActionTooltip label="Delete">
               <button className="p-1">
                 <Trash
-                  onClick={() => onOpen('deleteChannel', { server })}
+                  onClick={() => onOpen('deleteChannel', { server, channel })}
                   className="
                 text-destructive hidden w-4 h-4 group-hover:block group-focus-within:block"
                 />
