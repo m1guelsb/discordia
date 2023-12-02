@@ -5,7 +5,7 @@ import { Channel, ChannelType, MemberRole, Server } from '@prisma/client'
 import { Edit, Hash, Lock, Mic, Trash, Video } from 'lucide-react'
 import { useParams, useRouter } from 'next/navigation'
 import { ActionTooltip } from '../ui/action-tooltip'
-import { useModal } from '@/hooks/use-modal-store'
+import { ModalType, useModal } from '@/hooks/use-modal-store'
 
 interface ServerChannelProps {
   channel: Channel
@@ -30,13 +30,21 @@ export const ServerChannel = ({
 
   const Icon = iconMap[channel.type]
 
+  const goToChannel = () =>
+    router.push(`/servers/${params.serverId}/channels/${channel.id}`)
+
+  const onAction = (e: React.MouseEvent, action: ModalType) => {
+    e.stopPropagation()
+    onOpen(action, { channel, server })
+  }
+
   return (
     <ActionTooltip
       label={channel.name.length > 20 ? channel.name : ''}
       side="right"
     >
       <button
-        onClick={() => {}}
+        onClick={() => goToChannel()}
         className={cn(
           'group h-10 px-2 rounded-md flex items-center gap-x-2 w-full hover:bg-muted focus:bg-muted text-muted-foreground hover:text-foreground focus:text-foreground transition',
           channel.id === params?.channelId && 'bg-muted hover:text-foreground'
@@ -54,7 +62,7 @@ export const ServerChannel = ({
             <ActionTooltip label="Edit">
               <button className="p-1">
                 <Edit
-                  onClick={() => onOpen('editChannel', { server, channel })}
+                  onClick={(e) => onAction(e, 'editChannel')}
                   className="text-muted-foreground hidden w-4 h-4 group-hover:block group-focus-within:block"
                 />
               </button>
@@ -63,7 +71,7 @@ export const ServerChannel = ({
             <ActionTooltip label="Delete">
               <button className="p-1">
                 <Trash
-                  onClick={() => onOpen('deleteChannel', { server, channel })}
+                  onClick={(e) => onAction(e, 'deleteChannel')}
                   className="
                 text-destructive hidden w-4 h-4 group-hover:block group-focus-within:block"
                 />

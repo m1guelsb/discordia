@@ -23,8 +23,12 @@ export const ServerMember = ({ member, server }: ServerMemberProps) => {
   const params = useParams()
   const router = useRouter()
 
+  const goToMember = () =>
+    router.push(`/servers/${params.serverId}/conversations/${member.id}`)
+
   return (
     <button
+      onClick={() => goToMember()}
       title={member.role.toLocaleLowerCase()}
       className={cn(
         'h-10 px-2 rounded-md flex items-center gap-x-2 w-full transition  hover:bg-muted focus:bg-muted text-muted-foreground hover:text-foreground focus:text-foreground',
