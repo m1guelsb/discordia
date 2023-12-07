@@ -47,7 +47,7 @@ export const ServerChannel = ({
         onClick={() => goToChannel()}
         className={cn(
           'group h-10 px-2 rounded-md flex items-center gap-x-2 w-full hover:bg-muted focus:bg-muted text-muted-foreground hover:text-foreground focus:text-foreground transition',
-          channel.id === params?.channelId && 'bg-muted hover:text-foreground'
+          channel.id === params?.channelId && 'bg-muted text-foreground'
         )}
       >
         <Icon className="text-muted-foreground mr-2 flex-shrink-0 w-4 h-4" />
@@ -60,22 +60,22 @@ export const ServerChannel = ({
         {channel.name !== 'general' && role !== MemberRole.GUEST && (
           <span className="flex">
             <ActionTooltip label="Edit">
-              <button className="p-1">
+              <span className="p-1">
                 <Edit
                   onClick={(e) => onAction(e, 'editChannel')}
                   className="text-muted-foreground hidden w-4 h-4 group-hover:block group-focus-within:block"
                 />
-              </button>
+              </span>
             </ActionTooltip>
 
             <ActionTooltip label="Delete">
-              <button className="p-1">
+              <span className="p-1">
                 <Trash
                   onClick={(e) => onAction(e, 'deleteChannel')}
                   className="
                 text-destructive hidden w-4 h-4 group-hover:block group-focus-within:block"
                 />
-              </button>
+              </span>
             </ActionTooltip>
           </span>
         )}

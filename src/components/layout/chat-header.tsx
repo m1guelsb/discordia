@@ -3,6 +3,7 @@ import React from 'react'
 import { MobileToggle } from './mobile-toggle'
 import { Avatar } from '../ui/avatar'
 import { UserAvatar } from '../ui/user-avatar'
+import { SocketIndicator } from '../ui/socket-indicator'
 
 interface ChatHeaderProps {
   serverId: string
@@ -27,6 +28,9 @@ export const ChatHeader = ({
         <UserAvatar className="h-6 w-6 md:h-8 md:w-8" src={imageUrl} />
       )}
       <p>{name}</p>
+      <div className="ml-auto flex items-center">
+        <SocketIndicator />
+      </div>
     </div>
   )
 }
