@@ -1,12 +1,12 @@
 <p align="center">
   <img alt="Cover" src="./public/logo.svg"/>
 </p>
-<p align="center">
+
+<div align="center">
   <h1>Discordia</h1>
-</p>
-<p align="center">
   <h3>🚧 UNDER CONSTRUCTION 🚧</h3>
-</p>
+</div>
+
 <p align="center">
   <img alt="Typescript" src="https://img.shields.io/badge/Typescript-black?style=for-the-badge&logo=typescript&logoColor=blue"/>
 
