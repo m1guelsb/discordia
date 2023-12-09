@@ -31,10 +31,3 @@ Text, video and voice communication app where is possible to create personal ser
   <img title="Tailwind" src="https://skillicons.dev/icons?i=tailwind" height="48" />
   <img title="Postgres" src="https://skillicons.dev/icons?i=postgres" height="48" />
 </p>
-
----
-## How to run 🏃
-```
-npm i
-npm run dev
-```
