@@ -16,6 +16,8 @@
 
   <img alt="Tailwind" src="https://img.shields.io/badge/tailwindcss-black.svg?style=for-the-badge&logo=tailwind-css&logoColor=%2361DAFB"/>
 
+  <img alt="Tailwind" src="https://img.shields.io/badge/prisma-black.svg?style=for-the-badge&logo=prisma&logoColor=white"/>
+
   <img alt="Postgres" src="https://img.shields.io/badge/Postgresql-black.svg?style=for-the-badge&logo=postgresql&logoColor=lightblue"/>
 </p>
 
@@ -29,5 +31,6 @@ Text, video and voice communication app where is possible to create personal ser
   <img title="ReactJS" src="https://skillicons.dev/icons?i=react" height="48" />
   <img title="NextJS" src="https://skillicons.dev/icons?i=nextjs" height="48" />
   <img title="Tailwind" src="https://skillicons.dev/icons?i=tailwind" height="48" />
+  <img title="Prisma" src="https://skillicons.dev/icons?i=prisma" height="48" />
   <img title="Postgres" src="https://skillicons.dev/icons?i=postgres" height="48" />
 </p>
