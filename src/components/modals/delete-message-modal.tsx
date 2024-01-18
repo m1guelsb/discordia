@@ -56,7 +56,7 @@ export const DeleteMessageModal = () => {
               onClick={() => onDelete()}
               variant={'destructive'}
             >
-              Delete server
+              Delete message
             </Button>
           </div>
         </DialogFooter>

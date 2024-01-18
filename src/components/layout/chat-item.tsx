@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
+import { useRouter, useParams } from 'next/navigation'
 import * as z from 'zod'
 import axios from 'axios'
 import qs from 'query-string'
@@ -57,6 +58,15 @@ export const ChatItem = ({
 
   const { onOpen } = useModal()
 
+  const params = useParams()
+  const router = useRouter()
+
+  const onMemberClick = () => {
+    if (member.id !== currentMember.id) {
+      router.push(`/servers/${params?.serverId}/conversations/${member.id}`)
+    }
+  }
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' || e.keyCode === 27) {
@@ -109,13 +119,24 @@ export const ChatItem = ({
   return (
     <div className="relative group flex items-center hover:bg-background2 py-3 px-4 transition w-full">
       <div className="group flex gap-x-2 items-start w-full">
-        <div className="cursor-pointer hover:drop-shadow-md transition">
+        <div
+          onClick={() => onMemberClick()}
+          className="cursor-pointer hover:drop-shadow-md transition"
+        >
           <UserAvatar src={member.profile.imageUrl} />
         </div>
         <div className="flex flex-col w-full">
           <div className="flex items-center gap-x-2">
             <div className="flex items-center gap-1">
-              <p className="font-semibold text-sm hover:underline cursor-pointer">
+              <p
+                onClick={() => onMemberClick()}
+                className={cn(
+                  'font-semibold text-sm',
+                  member.id !== currentMember.id
+                    ? 'hover:underline cursor-pointer'
+                    : ''
+                )}
+              >
                 {member.profile.name}
               </p>
               <ActionTooltip label={member.role}>
@@ -183,11 +204,27 @@ export const ChatItem = ({
                 Press escape to{' '}
                 <button
                   className="text-primary hover:underline cursor-pointer"
-                  onClick={() => setIsEditing(false)}
+                  disabled={isLoading}
+                  onClick={() => {
+                    form.reset({
+                      content: content,
+                    })
+                    setIsEditing(false)
+                  }}
                 >
                   cancel
                 </button>{' '}
-                or enter to save
+                or enter to{' '}
+                <button
+                  onClick={() =>
+                    editMessage({ content: form.getValues('content') })
+                  }
+                  disabled={isLoading}
+                  className="text-primary hover:underline cursor-pointer"
+                >
+                  {' '}
+                  save
+                </button>
               </span>
             </Form>
           )}
