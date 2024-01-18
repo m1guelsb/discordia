@@ -8,6 +8,7 @@ import { useChatQuery } from '@/hooks/use-chat-query'
 import { ChatWelcome } from './chat-welcome'
 import { ChatItem } from './chat-item'
 import { useChatSocket } from '@/hooks/use-chat-socket'
+import { useChatScroll } from '@/hooks/use-chat-scroll'
 
 type MessageWithMemberWithProfile = Message & {
   member: Member & { profile: Profile }
@@ -54,6 +55,14 @@ export const ChatMessages = ({
     })
 
   useChatSocket({ queryKey, addKey, updateKey })
+
+  useChatScroll({
+    chatRef,
+    bottomRef,
+    loadMore: fetchNextPage,
+    shouldLoadMore: !isFetchingNextPage && !!hasNextPage,
+    count: data?.pages?.[0]?.items?.length ?? 0,
+  })
 
   if (status === 'pending') {
     return (
