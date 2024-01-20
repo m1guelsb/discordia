@@ -4,12 +4,13 @@ import * as z from 'zod'
 import axios from 'axios'
 import qs from 'query-string'
 import { useForm } from 'react-hook-form'
-import { Plus, Smile } from 'lucide-react'
+import { Plus } from 'lucide-react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
-import { Input } from '../ui/input'
+import { Input } from '@/components/ui/input'
+import { EmojiPicker } from '@/components/ui/emoji-picker'
 import { useModal } from '@/hooks/use-modal-store'
-import { on } from 'events'
+import { useRouter } from 'next/navigation'
 
 interface ChatInputProps {
   apiUrl: string
@@ -24,6 +25,7 @@ const formSchema = z.object({
 
 export const ChatInput = ({ apiUrl, name, query, type }: ChatInputProps) => {
   const { onOpen } = useModal()
+  const router = useRouter()
 
   const form = useForm<z.infer<typeof formSchema>>({
     defaultValues: {
@@ -42,6 +44,8 @@ export const ChatInput = ({ apiUrl, name, query, type }: ChatInputProps) => {
       })
 
       await axios.post(url, values)
+      form.reset()
+      router.refresh()
     } catch (error) {
       console.log('error', error)
     }
@@ -56,24 +60,28 @@ export const ChatInput = ({ apiUrl, name, query, type }: ChatInputProps) => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <div className="relative p-4 pb-4">
+                <div className="relative p-4 pt-0 pb-4">
                   <button
                     type="button"
                     onClick={() => onOpen('messageFile', { apiUrl, query })}
-                    className="absolute top-6 left-7 bg-background3 hover:bg-background transition rounded-full p-1 flex items-center justify-center"
+                    className="absolute top-3 left-7 bg-background3 hover:bg-background transition rounded-full p-1 flex items-center justify-center"
                   >
                     <Plus className="h-4 w-4" />
                   </button>
                   <Input
                     {...field}
                     disabled={isLoading}
-                    className="px-12 py6 bg-background2"
+                    className="h-12 px-12 py6 bg-background2"
                     placeholder={`Message ${
                       type === 'conversation' ? name : '#' + name
                     }`}
                   />
-                  <div className="absolute top-6 right-8">
-                    <Smile />
+                  <div className="absolute top-3 right-8">
+                    <EmojiPicker
+                      onChange={(emoji) =>
+                        field.onChange(`${field.value}${emoji}`)
+                      }
+                    />
                   </div>
                 </div>
               </FormControl>

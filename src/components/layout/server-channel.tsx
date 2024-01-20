@@ -31,7 +31,7 @@ export const ServerChannel = ({
   const Icon = iconMap[channel.type]
 
   const goToChannel = () =>
-    router.push(`/servers/${params.serverId}/channels/${channel.id}`)
+    router.push(`/servers/${params?.serverId}/channels/${channel.id}`)
 
   const onAction = (e: React.MouseEvent, action: ModalType) => {
     e.stopPropagation()
