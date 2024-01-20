@@ -117,15 +117,15 @@ export const ChatItem = ({
   const isImage = fileUrl
 
   return (
-    <div className="relative group flex items-center hover:bg-background2 py-3 px-4 transition w-full">
-      <div className="group flex gap-x-2 items-start w-full">
+    <div className="relative group flex items-center hover:bg-background2 py-1 mt-4 px-4 transition w-full">
+      <div className="group flex gap-x-3 items-start w-full">
         <div
           onClick={() => onMemberClick()}
           className="cursor-pointer hover:drop-shadow-md transition"
         >
           <UserAvatar src={member.profile.imageUrl} />
         </div>
-        <div className="flex flex-col w-full">
+        <div className="flex gap-1 flex-col w-full">
           <div className="flex items-center gap-x-2">
             <div className="flex items-center gap-1">
               <p
