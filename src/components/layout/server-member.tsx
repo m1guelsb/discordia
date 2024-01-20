@@ -24,7 +24,7 @@ export const ServerMember = ({ member, server }: ServerMemberProps) => {
   const router = useRouter()
 
   const goToMember = () =>
-    router.push(`/servers/${params.serverId}/conversations/${member.id}`)
+    router.push(`/servers/${params?.serverId}/conversations/${member?.id}`)
 
   return (
     <button
