@@ -1,8 +1,9 @@
 <p align="center">
   <img alt="Logo" src="./public/logo.svg" width="150" height="150"/>
-  <h1>Discordia</h1>
 </p>
-
+<div align="center">
+  <h1>Discordia</h1>
+</div>
 
 <p align="center">
   <img alt="Typescript" src="https://img.shields.io/badge/Typescript-black?style=for-the-badge&logo=typescript&logoColor=blue"/>
