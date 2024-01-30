@@ -18,10 +18,6 @@
   <img alt="Postgres" src="https://img.shields.io/badge/Postgresql-black.svg?style=for-the-badge&logo=postgresql&logoColor=lightblue"/>
 </p>
 
-<div align="center">
-  [![MIT License][license-shield]][license-url]
-</div>
-
 # About 🔎
 <img alt="Cover" src="./public/cover.png"/>
 
