@@ -4,7 +4,6 @@
 
 <div align="center">
   <h1>Discordia</h1>
-  <h3>🚧 UNDER CONSTRUCTION 🚧</h3>
 </div>
 
 <p align="center">
@@ -22,7 +21,7 @@
 </p>
 
 ## About 🔎
-Text, video and voice communication app where is possible to create personal servers or enter other's. You can manage members and channels, send private messages to other members and enter channels to talk by video or text. Just like the real Discord.
+Communication app where is possible to create personal servers or enter others servers by invite, also manage members and channels, send private messages to other members or just chat in server channels just like the real Discord.
 
 ---
 ## Tech Stack 🔧
