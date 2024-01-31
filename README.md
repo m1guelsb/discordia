@@ -64,6 +64,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Miguel Barbosa - [@m1guelsb](https://twitter.com/m1guelsb) - email@example.com
+Miguel Barbosa - [@m1guelsb](https://twitter.com/m1guelsb)
 
 Project Link: [https://github.com/m1guelsb/discordia](https://github.com/m1guelsb/discordia)
